@@ -1,0 +1,996 @@
+//Variables
+$purple: #530082;
+$lightPurple: #8A05BE;
+$pinkPurpled: #F962E2;
+
+//Breakpoints
+$small: 768px;
+$medium: 769px;
+$large: 1120px;
+$extra: 1440px;
+
+//Queries
+
+//between 0 and 768
+@mixin small {
+    @media screen and (max-width: $small) { @content; }
+}
+
+//between 769 and 1120
+@mixin medium {
+    @media (min-width: $medium) { @content; }
+}
+
+//between 1120 and 1440
+@mixin large {
+    @media (min-width: $large) { @content; }
+}
+
+//1440 foward
+@mixin extralarge {
+    @media (min-width: $extra) { @content; }
+}
+
+body {
+    font-family: 'Graphik', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
+
+    h1, h2 {
+        font-family: 'GraphikWide', Arial, Helvetica, sans-serif !important;
+        font-size: 48px;
+        line-height: 53px;
+        color: white;
+
+        @include small {
+            font-size: 40px !important;
+            line-height: 44px;
+        }
+    }
+
+    p {
+        color: white;
+        font-size: 24px;
+    }
+
+    #presentation {
+        background: linear-gradient(180deg, #8C5674 0%, #A57195 100%);
+        // background-image: url(../imgs/thumbnail.png);
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        height: 750px;
+        font-weight: 500;
+
+        video {
+            left: 0;
+            right: 0;
+            position: absolute;
+            top: 50%;
+            width: 115%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(calc(-50% - 130px));
+        }
+        
+        .hi-ted {
+            max-width: 1330px;
+            width: 100%;
+            padding: 0 40px;
+
+            @include small {
+                padding: 0 20px;
+                margin: 0;
+            }
+
+            z-index: 2;
+            transform: translate3d(0,0,0);
+            margin: 0 auto;
+
+            h1 {
+                max-width: 588px;
+            }
+    
+            p {
+                max-width: 421px;
+                line-height: 30px;
+                margin-top: 21px;
+                font-weight: 400;
+            }
+        }
+
+        
+        //Video position resizes
+        @media screen and (min-width: 1900px) {
+            video {
+                width: 135%;
+            }
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 1560px) {
+            height: 700px;
+            video {
+                width: 140%;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            height: 600px;
+            video {
+                width: 150%;
+            }
+
+        } 
+        
+        @media screen and (max-width: 1000px) {
+            height: 500px;
+            .hi-ted{
+                h1 {
+                    max-width: 400px;
+                }
+            }
+            
+            video {
+                transform: translateY(calc(-50% - 40px));
+            }
+        }
+
+        @include medium {
+            .hi-ted {
+                h1 {
+                    font-size: 40px;
+                    line-height: 44px;
+                }
+            }
+        }
+
+        @include large {
+            .hi-ted {
+                h1 {
+                    font-size: 48px;
+                    line-height: 53px;
+                }
+            }
+        }
+
+        @include small {
+            background-color: $lightPurple;
+            background-image: none;
+            flex-wrap: wrap;
+            flex-direction: column-reverse;
+            align-items: baseline;
+            height: auto;
+
+            .hi-ted{
+                width: auto;
+                padding: 65px 20px;
+                h1 {
+                    max-width: 100%;
+                }
+            }
+
+            .hi-ted-video {
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+                video {
+                    position: relative;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    transform: translate(0);
+                    width: 250%;
+                    margin: -35% -75% -10%;
+                }
+            }
+        }
+
+        @media screen and (max-width: $large) {
+            height: 500px;
+            .hi-ted-video {
+                video {
+                    background-image: url(../imgs/video-optmzd.gif);
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            }
+        }
+        
+        @media screen and (max-width: $medium) {
+            height: auto;
+            .hi-ted-video {
+                video {
+                    background-size: 90%;
+                }
+            }
+        }
+
+    }
+
+    #goodbye {
+        position: relative;
+        width: 100%;
+        height: 70px;
+        overflow-x: hidden;
+        display: flex;
+        align-items: center;
+        background-color: $purple;
+
+        &.fixed {
+            position: fixed;
+            top: 0;
+            z-index: 2;
+        }
+
+        .fakeMarkee {
+            position: absolute;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee 22s linear infinite;
+
+            span {
+                font-size: 20px;
+                color: $pinkPurpled;
+                font-family: 'GraphikWide', Arial, Helvetica, sans-serif;
+                margin: -4px 40px 0;
+                display: inline-block;
+                a{
+                    color: white;
+                    text-decoration: none;
+                    
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                &.sold-off {
+                    color: white;
+                    span {
+                        color: $pinkPurpled;
+                        margin: 0;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        &:hover {
+            .fakeMarkee{
+                -webkit-animation-play-state:paused;
+                -moz-animation-play-state:paused;
+                -o-animation-play-state:paused;
+                animation-play-state:paused;
+            }
+        }
+    }
+
+    #benefits {
+        background: linear-gradient(0deg, rgba(167,119,180,1) 0%, rgba(156,107,162,1) 50%, rgba(137,91,144,1) 100%);
+        position: relative;
+        overflow: hidden;
+        height: 700px;
+
+        @media screen and (max-width: $large) {
+            height: auto;
+        }
+
+        video {
+            width: 140%;
+            position: absolute;
+            transform: translate(-15%, -100px);
+            display: none;
+
+            @media screen and (min-width: 1121px) {
+                display: block;
+            }
+
+            @media screen and (min-width: 1800px) {
+                width: 123%;
+                transform: translate(-10%, -100px);
+            }
+
+            @media screen and (min-width: 1441px) {
+                width: 123%;
+                transform: translate(-10%, -100px);
+            }
+
+            @media screen and (max-width: 1440px) {
+                width: 139%;
+                transform: translate(-15%, -100px);
+            }
+
+            @media screen and (max-width: 1242px) {
+                transform: translate(-15%, -30px);
+            }
+
+            @media screen and (max-width: 1200px) {
+                transform: translate(-17%, 0);
+            }
+        }
+
+        .container {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate3d(50%,-50%,0);
+            .content {
+                padding-left: 0;
+                .benefits-grid {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    .totem-container {
+                        overflow: hidden;
+                        width: 60%;
+                        margin-left: -50px;
+                        position: relative;
+                        height: 100%;
+                        video {
+                            // width: 1780px;
+                            width: 210%;
+                            position: absolute;
+                            right: 50%;
+                            transform: translateX(calc(50% + 20px));
+                            background-image: url(../imgs/totem-thumbnail.png);
+                            background-size: 800px;
+                            background-position: center bottom;
+                            background-repeat: no-repeat;
+                            bottom: -50px;
+
+                            @include extralarge {
+                                top: -100px;
+                            }
+                        }
+                    }
+                    .totem-text {
+                        width: 40%;
+                        transform: translate3d(0,0,0);
+                        .nuconta-info{
+                            max-width:  454px;
+                            margin: 0 auto;
+                            p {
+                                margin-top: 50px;
+                                font-size: 20px;
+                                line-height: 25px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: $large) {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: translate(0);
+                .content {
+                    height: auto;
+                    padding: 0 40px;
+                    .benefits-grid {
+                        flex-wrap: wrap;
+                        flex-direction: column-reverse;
+                        align-items: baseline;
+                        .totem-container {
+                            width: calc(100% + 80px);
+                            position: relative;
+                            overflow: hidden;
+                            margin: 0 auto;
+                            margin-left: -40px;
+                            video {
+                                position: relative;
+                                top: 0;
+                                bottom: 0;
+                                right: 0;
+                                left: 0;
+                                transform: translate(0);
+                                width: 200%;
+                                margin: -25% -47% -10%;
+                                display: none;
+                            }
+                            .video-as-gif {
+                                background-image: url(../imgs/totem.gif);
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                height: 540px;
+
+                                @include small {
+
+                                }
+                            }
+                        }
+                        .totem-text {
+                            width: 100%;
+                            padding: 50px 0;
+                            .nuconta-info{
+                                margin: 0;
+                                max-width: 100%;
+                                display: flex;
+
+                                p {
+                                    width: 63%;
+                                    margin-top: 0;
+                                    max-width: 100%;
+                                }
+
+                                h2 {
+                                    width: 37%;
+                                    max-width: 293px;
+                                    font-size: 40px;
+                                    line-height: 44px;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include small {
+                .content {
+                    padding: 0 20px;
+                    .benefits-grid {
+
+                        .totem-container {
+                            width: calc(100% + 60px);
+                            .video-as-gif {
+                                height: 450px;
+                                background-size: 170%;
+                            }
+                        }
+                        .totem-text {
+                            .nuconta-info {
+                                display: block;
+
+                                p {
+                                    width: 100%;
+                                    margin-top: 40px;
+                                }
+
+                                h2 {
+                                    width: 100%;
+                                    max-width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 505px) {
+                .content {
+                    .benefits-grid {
+                        .totem-container {
+                            .video-as-gif {
+                                height: 430px;
+                                background-size: 210%;
+                                background-position: -270px -70px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 440px) {
+                .content {
+                    .benefits-grid {
+                        .totem-container {
+                            .video-as-gif {
+                                height: 430px;
+                                background-size: 210%;
+                                background-position: -210px center;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 340px) {
+                .content {
+                    .benefits-grid {
+                        .totem-container {
+                            .video-as-gif {
+                                height: 320px;
+                                background-size: 210%;
+                                background-position: -170px center;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    #about-ted {
+        padding: 50px 0 80px;
+        background-color: $purple;
+        
+        .abouts {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            width: 100%;
+            margin-top: 50px;
+
+            .item {
+                svg {
+                    width: 110px;
+                }
+
+                p {
+                    font-size: 20px;
+                    line-height: 25px;
+                    margin-top: 20px;
+                }
+            }
+
+            @include small {
+                flex-wrap: wrap;
+                .item {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        width: 93px !important;
+                    }
+
+                    br {
+                        display: none;
+                    }
+
+                    p {
+                        margin: 0 0 0 12px;
+                        width: 90%;
+                    }
+
+                    &:nth-child(-n+3){
+                        margin-bottom: 45px;
+                    }
+                }
+            }
+
+            @include medium {
+                flex-wrap: wrap;
+                .item {
+                    width: 40%;
+
+                    &:nth-child(-n+2){
+                        margin-bottom: 70px;
+                    }
+                }
+            }
+
+            @include large {
+                flex-wrap: unset;
+                .item {
+                    width: 20%;
+                    
+                    &:nth-child(-n+2){
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    #buy-place {
+        background-color: $lightPurple;
+        .container{
+            .content {
+                .grid {
+                    display: flex;
+                    justify-content: stretch;
+    
+                    .details {
+                        p {
+                            font-size: 20px;
+                            line-height: 25px;
+                            margin-top: 30px;
+                        }
+                    }
+    
+                    .map-container {
+                        position: relative;
+                        overflow: hidden;
+                        video {
+                            position: absolute;
+                            right: 50%;
+                            bottom: 50%;
+                            transform: translate(50%, 50%);
+                            display: none;
+
+                            @include medium {
+                                width: 150%;
+                            }
+
+                            @include large {
+                                display: block;
+                                width: 150%;
+                            }
+
+                            @include extralarge {
+                                width: 110%;
+                            }
+                        }
+                        iframe {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+
+            @include small {
+                .content {
+                    .grid{
+                        flex-wrap: wrap;
+                        .details {
+                            width: 100%;
+                            padding: 44px 0;
+                            h2 {
+                                br{
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        .map-container {
+                            width: calc(100% + 40px);
+                            height: 430px;
+                            margin-left: -20px;
+                            margin-right: -20px;
+                            //Esgotado
+                            background-image: url(../imgs/ESGOTADO.gif);
+                            background-position: center;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 490px) {
+                .content {
+                    .grid{
+                        .map-container {
+                            height: 320px;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 320px) {
+                .content {
+                    .grid{
+                        .map-container {
+                            height: 220px;
+                        }
+                    }
+                }
+            }
+
+
+            @include medium {
+                .content {
+                    padding: 0;
+                    .grid {
+                        .details {
+                            width: calc(50% - 80px);
+                            padding: 60px 40px;
+                        }
+        
+                        .map-container {
+                            width: 50%;
+                            //esgotado
+                            background-image: url(../imgs/ESGOTADO.gif);
+                            background-position: center;
+                            background-size: 130%;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+            }
+
+            @include large {
+                .content {
+                    padding: 0 55px;
+                    .grid {
+                        .details {
+                            width: 40%;
+                            // padding: 70px 70px 60px 0;
+                            padding: 70px 0 100px 0;
+
+                            p {
+                               max-width: 352px; 
+                            }
+
+                        }
+        
+                        .map-container {
+                            width: 60%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #about-nu-ted {
+        .content {
+            height: 832px;
+            background-color: white;
+            display: flex;
+            .about-grid {
+                display: flex;
+                align-items: center;
+                width: 100%;
+
+                @include small {
+                    flex-wrap: wrap;
+                }
+
+                > div {
+                    width: 50%;
+
+                    @include small {
+                        width: 100%;
+                    }
+
+                    @include large {
+                        width: 60%;
+
+                        &:first-child {
+                            width: 40%;
+                        }
+                    }
+
+                    h2 {
+                        font-size: 48px;
+                        color: $purple;
+                    }
+                    
+                    p {
+                        margin-top: 40px;
+                        margin-bottom: 50px;
+                        color: $purple;
+                        line-height: 30px;
+                    }
+
+                    img {
+                        width: 100%;
+                        max-width: 480px;
+                        margin: 0 auto;
+                        display: block;
+                    }
+
+                    .about-info {
+                        max-width: 450px;
+
+                        @include small {
+                            max-width: 100%;
+                            margin-top: 60px;
+                        }
+                    }
+
+
+                    .tabs-container {
+                        width: 100%;
+                        .tabs {
+                            display: flex;
+                            
+                            button {
+                                color: $purple;
+                                font-family: 'Graphik', Arial, Helvetica, sans-serif;
+                                font-size: 14px;
+                                color: $purple;
+                                opacity: 0.3;
+                                padding: 15px;
+                                text-transform: uppercase;
+                                font-weight: bolder;
+                                border: none;
+                                background-color: transparent;
+                                cursor: pointer;
+                                position: relative;
+                                outline: none;
+                                transition: ease-in-out 200ms;
+
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    height: 2px;
+                                    background-color: $purple;
+                                    left: 0;
+                                    right: 100%;
+                                    bottom: 0;
+                                    transition: ease-in-out 200ms;
+                                }
+
+                                &:hover {
+                                    opacity: 1;
+                                }
+    
+                                &.active {
+                                    opacity: 1;
+    
+                                    &::after {
+                                        right: 0%;
+                                    }
+                                }
+                            }
+    
+                        }
+                        .tabs-content {
+
+                            @include small {
+                                height: 125px;
+                                max-width: 412px;
+
+                                @media screen and (max-width: 380px) {
+                                    height: 130px;
+                                }
+
+                                @media screen and (max-width: 338px) {
+                                    height: 150px;
+                                }
+                            }
+
+                            @include medium {
+                                height: 140px;
+                                max-width: 307px;
+                            }
+
+                            @include large {
+                                height: 100px;
+                                max-width: 420px;
+                            }
+
+                            width: 100%;
+                            margin-top: 40px;
+                            margin-bottom: 50px;
+                            overflow: hidden;
+                            position: relative;
+                            .tabs-track {
+                                width: 840px;
+                                display: flex;
+                                position: absolute;
+                                transition: ease-in-out 500ms;
+
+                                @include small {
+                                    display: block;
+                                    width: 100%;
+                                }
+
+                                div {
+
+                                    @media screen and (max-width: 353px) {
+
+                                    }
+
+                                    @include small {
+                                        max-width: 432px;
+                                        margin-bottom: 30px;
+                                    }
+
+                                    @include medium {
+                                        width: 307px;
+                                    }
+
+                                    @include large {
+                                        width: 420px;
+                                    }
+
+                                    p {
+                                        font-size: 20px;
+                                        line-height: 25px;
+                                        margin: 0;
+                                    }
+                                }
+
+                                &.tab1 {
+                                    left: 0%;
+                                    @include small {
+                                        top: 0%;
+                                    }
+                                }
+                                &.tab2 {
+                                    left: -100%;
+                                    @include small {
+                                        top: calc(-100% - 5px);
+                                        left: 0%;
+                                    }
+
+                                    @media screen and (max-width: 380px) {
+                                        top: calc(-100% - 22px);
+                                        left: 0%;
+                                    }
+
+                                    @media screen and (max-width: 358px) {
+                                        top: calc(-100% - 25px);
+                                        left: 0%;
+                                    }
+
+                                    @media screen and (max-width: 353px) {
+                                        top: calc(-100% - 25px);
+                                        left: 0%;
+                                    }
+
+                                    @media screen and (max-width: 338px) {
+                                        top: calc(-100% - 10px);
+                                        left: 0%;
+                                    }
+
+                                }
+                            }
+                        }
+
+                        .cta {
+                            text-decoration: none;
+                            color: white;
+                            background-color: $purple;
+                            padding: 15px 25px;
+                            font-size: 20px;
+                            transition: ease-in-out 200ms;
+                            display: inline-block;
+
+                            &:hover {
+                                background-color: $lightPurple;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.container {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+
+    .content {
+        
+        @include small {
+            padding: 0 20px;
+        }
+
+        @include medium {
+            padding: 0 40px;
+        }
+
+        @include large {
+            padding: 0 55px;
+        }
+    }
+
+    @include extralarge  {
+        max-width: $extra;
+    }
+
+}
+
+// animations
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@include small {
+    .hide-mobile {
+        display: none;
+    } 
+}
+
+@include medium {
+    .hide-mobile {
+        display: none;
+    } 
+}
